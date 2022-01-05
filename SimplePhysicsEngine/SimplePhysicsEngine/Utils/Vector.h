@@ -1,7 +1,7 @@
 ﻿#ifndef _VECTOR_H_
 #define _VECTOR_H_
 
-/// @file vector.h
+/// @file Vector.h
 /// @defgroup Vector
 /// @{
 

@@ -21,6 +21,7 @@ typedef enum SpringFlag_e
 /// @brief Structure représentant un ressort entre une balle et son point d'attache.
 typedef struct Spring_s
 {
+    /// @brief N'affiche pas le ressort si déjà afficher
     int flags;
 
     /// @brief Pointeur vers le point d'attache.

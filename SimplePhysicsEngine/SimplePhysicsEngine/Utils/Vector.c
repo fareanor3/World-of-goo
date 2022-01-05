@@ -1,4 +1,4 @@
-﻿#include "vector.h"
+﻿#include "Vector.h"
 #include <math.h>
 
 Vec2 Vec2_Set(float x, float y)
@@ -37,7 +37,7 @@ Vec2 Vec2_Scale(Vec2 v, float s)
 
 float Vec2_Length(Vec2 v)
 {
-    float len = sqrt(pow(v.x,2) + pow(v.y,2));
+    float len = sqrtf(pow(v.x, 2) + pow(v.y, 2));
     return len;
 }
 
@@ -51,6 +51,6 @@ Vec2 Vec2_Normalize(Vec2 v)
 
 float Vec2_Distance(Vec2 v1, Vec2 v2)
 {
-    float distance = sqrt(pow((v2.x - v1.x),2) + pow((v2.y - v1.y),2));
+    float distance = sqrtf(pow((v2.x - v1.x), 2) + pow((v2.y - v1.y), 2));
     return distance;
 }

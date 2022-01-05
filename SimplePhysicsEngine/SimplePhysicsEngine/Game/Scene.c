@@ -41,6 +41,10 @@ Scene *Scene_New(Renderer *renderer)
     Ball_Connect(ball1, ball2, 1.5f);
     Ball_Connect(ball1, ball3, 1.5f);
     Ball_Connect(ball2, ball3, 1.5f);
+    
+    ball1->velocity = Vec2_Set(0.0f, 20.f);
+    ball2->velocity = Vec2_Set(0.0f, 20.f);
+    ball3->velocity = Vec2_Set(10.0f, 20.f);
 
     return scene;
 
