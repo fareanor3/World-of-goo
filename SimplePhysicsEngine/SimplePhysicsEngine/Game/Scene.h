@@ -123,9 +123,6 @@ void Scene_Update(Scene *scene);
 /// @param[in] scene la scène à rendre.
 void Scene_Render(Scene *scene);
 
-//-------------------------------------------------------------------------------------------------
-// Fonctions de recherche
-
 /// @brief Recherche dans une scène la balle la plus proche d'une position donnée.
 /// @param[in] scene la scène dans laquelle faire la recherche.
 /// @param[in] position la position autour de laquelle faire la recherche.
