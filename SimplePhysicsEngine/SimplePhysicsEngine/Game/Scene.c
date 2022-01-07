@@ -5,6 +5,7 @@
 #include "../Utils/Timer.h"
 
 int Scene_DoubleCapacity(Scene *scene);
+bool PAUSE = false ;
 
 Scene *Scene_New(Renderer *renderer)
 {
@@ -234,6 +235,8 @@ int Scene_GetNearestBalls(Scene *scene, Vec2 position, BallQuery *queries, int q
             ball_number++;
 
         j--;
+
+        // decalage 
         while(j >= 0 && ball_distance < queries[j].distance) {
             queries[j+1].ball     = queries[j].ball;
             queries[j+1].distance = queries[j].distance;
@@ -242,6 +245,7 @@ int Scene_GetNearestBalls(Scene *scene, Vec2 position, BallQuery *queries, int q
         }
         j++;
 
+        // remplis "le vide" du decalage
         queries[j].ball     = &(balls[i]);
         queries[j].distance = ball_distance;
     }
@@ -284,6 +288,15 @@ void Scene_UpdateGame(Scene *scene)
     mouseDelta = Vec2_Sub(mouseDelta, mousePos);
     scene->m_mousePos = mousePos;
 
+    // Mettre en pause
+    if (input->SeparatorDown)
+    {
+        if (PAUSE)
+            PAUSE = false;
+        else if (!PAUSE)
+            PAUSE = true ;
+    }
+        
     // Déplacement de la caméra
     if (input->mouseRDown)
     {
@@ -305,7 +318,8 @@ void Scene_UpdateGame(Scene *scene)
             }
         }
     }
-    
+
+    // Suppression de code 
     if( input->KeyCDown && scene->m_validCount > 0)
     {
         BallQuery query = Scene_GetNearestBall(scene,scene->m_mousePos);
@@ -320,19 +334,21 @@ void Scene_Update(Scene *scene)
     // Met à jour les entrées de l'utilisateur
     Input_Update(scene->m_input);
 
-    // Met à jour le moteur physique (pas de temps fixe)
-    scene->m_accu += Timer_GetDelta(g_time);
-    while (scene->m_accu >= timeStep)
+    if (!PAUSE)
     {
-        Scene_FixedUpdate(scene, timeStep);
-        scene->m_accu -= timeStep;
+        // Met à jour le moteur physique (pas de temps fixe)
+        scene->m_accu += Timer_GetDelta(g_time);
+        while (scene->m_accu >= timeStep)
+        {
+            Scene_FixedUpdate(scene, timeStep);
+            scene->m_accu -= timeStep;
+        }
     }
-
-    // Met à jour la caméra (déplacement)
-    Camera_Update(scene->m_camera);
-
-    // Met à jour le jeu
-    Scene_UpdateGame(scene);
+        // Met à jour la caméra (déplacement)
+        Camera_Update(scene->m_camera);
+        // Met à jour le jeu
+        Scene_UpdateGame(scene);
+    
 }
 
 void Scene_RenderBalls(Scene *scene)

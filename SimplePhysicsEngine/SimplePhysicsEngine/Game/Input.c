@@ -33,7 +33,7 @@ void Input_Update(Input *input)
     input->mouseLPressed  = false;
     input->mouseRPressed  = false;
     input->KeyCDown       = false;
-    input->KeyDDown       = false;
+    input->SeparatorDown  = false;
 
     int lastMouseX = input->mouseX;
     int lastMouseY = input->mouseY;
@@ -62,8 +62,8 @@ void Input_Update(Input *input)
             case SDL_SCANCODE_C:
                 input->KeyCDown = true;
                 break;
-            case SDL_SCANCODE_D:
-                input->KeyDDown = true;
+            case SDL_SCANCODE_SPACE:
+                input->SeparatorDown = true;
                 break;
             
             default:
@@ -75,9 +75,6 @@ void Input_Update(Input *input)
             if (evt.key.repeat)
                 case SDL_SCANCODE_C:
                     input->KeyCDown = false;
-                    break;
-                case SDL_SCANCODE_D:
-                    input->KeyDDown = false;
                     break;
                 break;
 
