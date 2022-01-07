@@ -54,6 +54,9 @@ LIBS = -lm -lSDL2 `sdl2-config --libs` -lSDL2_image #-fopenmp
 
 all: $(EXE)
 
+run: $(EXE)
+	./$(EXE)
+
 $(EXE): $(OBJ)
 	$(CC) $(ROPT) $(INCPATH)  -o $@ $(OBJ) $(LIBPATH) $(LIBS)
 

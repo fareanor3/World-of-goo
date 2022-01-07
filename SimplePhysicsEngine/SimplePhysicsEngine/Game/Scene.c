@@ -251,7 +251,7 @@ int Scene_GetNearestBalls(Scene *scene, Vec2 position, BallQuery *queries, int q
 void Scene_FixedUpdate(Scene *scene, float timeStep)
 {
     int ballCount = Scene_GetBallCount(scene);
-    Ball *balls = Scene_GetBalls(scene);
+    Ball *balls   = Scene_GetBalls(scene);
 
     for (int i = 0; i < ballCount; i++)
     {
@@ -295,7 +295,6 @@ void Scene_UpdateGame(Scene *scene)
 
     if (input->mouseLPressed && scene->m_validCount > 0)
     {
-        printf("start");
         BallQuery *queries = scene->m_queries;
         Ball *ball = Scene_CreateBall(scene, scene->m_mousePos);
 
@@ -307,7 +306,11 @@ void Scene_UpdateGame(Scene *scene)
         }
     }
     
-    // fct pour suppr la balle la plus proche !
+    if( input->KeyCDown && scene->m_validCount > 0)
+    {
+        BallQuery query = Scene_GetNearestBall(scene,scene->m_mousePos);
+        Scene_RemoveBall(scene,query.ball);
+    }
 }
 
 void Scene_Update(Scene *scene)

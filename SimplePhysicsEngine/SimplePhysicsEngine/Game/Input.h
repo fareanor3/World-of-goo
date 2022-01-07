@@ -12,6 +12,8 @@ typedef struct Input_s
     bool mouseRPressed;
     bool mouseLDown;
     bool mouseRDown;
+    bool KeyCDown;
+    bool KeyDDown;
 
     int mouseX;
     int mouseY;

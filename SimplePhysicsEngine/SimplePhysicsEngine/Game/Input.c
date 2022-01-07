@@ -28,10 +28,12 @@ void Input_Update(Input *input)
 {
     SDL_Event evt;
 
-    input->quitPressed = false;
+    input->quitPressed    = false;
     input->restartPressed = false;
-    input->mouseLPressed = false;
-    input->mouseRPressed = false;
+    input->mouseLPressed  = false;
+    input->mouseRPressed  = false;
+    input->KeyCDown       = false;
+    input->KeyDDown       = false;
 
     int lastMouseX = input->mouseX;
     int lastMouseY = input->mouseY;
@@ -57,6 +59,13 @@ void Input_Update(Input *input)
             case SDL_SCANCODE_RETURN:
                 input->restartPressed = true;
                 break;
+            case SDL_SCANCODE_C:
+                input->KeyCDown = true;
+                break;
+            case SDL_SCANCODE_D:
+                input->KeyDDown = true;
+                break;
+            
             default:
                 break;
             }
@@ -64,6 +73,12 @@ void Input_Update(Input *input)
 
         case SDL_KEYUP:
             if (evt.key.repeat)
+                case SDL_SCANCODE_C:
+                    input->KeyCDown = false;
+                    break;
+                case SDL_SCANCODE_D:
+                    input->KeyDDown = false;
+                    break;
                 break;
 
             switch (evt.key.keysym.scancode)
