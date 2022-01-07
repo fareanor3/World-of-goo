@@ -6,6 +6,7 @@
 
 int Scene_DoubleCapacity(Scene *scene);
 bool PAUSE = false ;
+bool DRAG  = false;
 
 Scene *Scene_New(Renderer *renderer)
 {
@@ -324,6 +325,25 @@ void Scene_UpdateGame(Scene *scene)
     {
         BallQuery query = Scene_GetNearestBall(scene,scene->m_mousePos);
         Scene_RemoveBall(scene,query.ball);
+    }
+
+    if ( input->KeyDDown && scene->m_validCount > 0)
+    {
+        if (DRAG)
+        {
+            DRAG = false;
+        }
+        else if (!DRAG)
+            DRAG = true ;
+    }
+    if (DRAG)
+    {
+        BallQuery query = Scene_GetNearestBall(scene,scene->m_mousePos);
+        if (query.distance <= 0.75)
+        {
+            query.ball->velocity = Vec2_Set(0.0,0.0f);
+            query.ball->position = Scene_GetMousePosition(scene);
+        }
     }
 }
 
