@@ -1,4 +1,4 @@
-![logo](WorldOfGoo_logo.jpg)
+![logo](https://github.com/fareanor3/World-of-goo/blob/76de85b0c8bbe9a299c6d2a6b7b49328b27adec3/WorldOfGoo_logo.jpg)
 
 ## Word of goo ##
 
