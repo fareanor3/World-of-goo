@@ -2,7 +2,7 @@
 
 ## Word of goo ##
 
-Liste des fonctionnalité ajouter à votre disposition :
+List of features added at your disposal:
 
 ----
 |`feature`| *user manual* | details |
